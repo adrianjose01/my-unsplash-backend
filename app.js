@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const imageRoutes = require("./routes/images");
+require("dotenv").config();
 
 const app = express();
 
@@ -28,7 +29,7 @@ app.use((error, req, res, next) => {
 });
 
 mongoose
-  .connect("mongodb+srv://adrian:87456766@test.lowwjqz.mongodb.net/unsplash?")
+  .connect(process.env.DB_URL)
   .then((result) => {
     app.listen(8000);
   })
